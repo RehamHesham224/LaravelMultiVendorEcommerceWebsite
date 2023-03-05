@@ -25,4 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 require_once base_path('/routes/cart.php');
 
-Route::resource('orders',OrderController::class);
+Route::resource('orders',OrderController::class)->middleware('auth');

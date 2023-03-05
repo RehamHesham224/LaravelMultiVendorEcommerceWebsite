@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('order_number');
-            $table->enum('status',['pending','processing','completed','decline']);
+            $table->enum('status',['pending','processing','completed','decline'])->default('pending');
             $table->float('grand_total');
             $table->integer('item_count');
             $table->boolean('is_paid')->default(false);

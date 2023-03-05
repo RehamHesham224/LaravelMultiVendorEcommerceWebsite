@@ -13,7 +13,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'shipping_full_name' => 'required',
+            'shipping_state' => 'required',
+            'shipping_city' => 'required',
+            'shipping_address' => 'required',
+            'shipping_phone' => 'required',
+            'shipping_zipcode' => 'required',
         ];
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\StoreOrderAction;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use http\Env\Request;
 
 class OrderController extends Controller
 {
@@ -34,9 +36,15 @@ class OrderController extends Controller
      * @param  \App\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request, StoreOrderAction $action)
     {
-        //
+        $order=$action->handle($request);
+        dd($order);
+//        return redirect()->with('message','Already Created');
+
+//        if($order->wasRecentlyCreated){
+//
+//        }
     }
 
     /**
