@@ -1,5 +1,6 @@
 <?php
-
+//declare(strict_types=1);
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::redirect('/', 'home');
 
 Auth::routes();
@@ -20,11 +23,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/add-to-cart/{product}', [CartController::class, 'add'])->name('cart.add');
+require_once base_path('/routes/cart.php');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
-Route::post('/cart ', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::post('/cart/update/{itemId}', [CartController::class, 'update'])->name('cart.update');
-
-
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+Route::resource('orders',OrderController::class);

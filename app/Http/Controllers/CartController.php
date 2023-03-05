@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -16,21 +18,30 @@ class CartController extends Controller
                 'attributes' => array(),
                 'associatedModel' => $product
             ));
-        return redirect()->route('cart.index')->with('message', 'Added to cart');
+        return redirect()->back()->with('message', 'Added to cart');
     }
     public function index(){
         //cartItems
         $cartItems=\Cart::session(Auth::id())->getContent();
         return view('cart.index',compact('cartItems'));
     }
-    public function destroy($cartItem){
+    public function destroy($itemId){
         //cartItem
+        $cartItem=\Cart::session(Auth::id())->remove($itemId);
+        return redirect()->back()->with('message', 'Deleted Successfully');
     }
     public function update($itemId){
         //cartItem
-//        Cart::session(Auth::user())->update($cartItem->id,[
-//            'quantity' => ,
-//            'price' => 98.67
-//        ]);
+        \Cart::session(Auth::id())->update($itemId,[
+            'quantity'=>array(
+                'relative'=>false,
+                'value' => request('quantity'),
+            )
+        ]);
+        return redirect()->back()->with('message', 'Updated Successfully');
+    }
+
+    public function checkout(){
+        return view('cart.checkout');
     }
 }
