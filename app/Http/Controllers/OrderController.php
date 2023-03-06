@@ -34,17 +34,23 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreOrderRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function store(StoreOrderRequest $request, StoreOrderAction $action)
     {
         $order=$action->handle($request);
-        dd($order);
-//        return redirect()->with('message','Already Created');
+        //payment
+        if(request('payment_method') === 'paypal'){
+            //redirect to PayPal
+            return redirect()->route('paypal.checkout');
+        }
+        //empty cart
+        \Cart::session(auth()->id())->clear();
+        //send email to customer
+        //take user to thank you page
+        return "Order completed, Thank you for order";
 
-//        if($order->wasRecentlyCreated){
-//
-//        }
+//        dd($order);
     }
 
     /**
