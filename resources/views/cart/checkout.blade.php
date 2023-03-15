@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
         <h2>Checkout</h2>
         <h3>Shipping Informaion</h3>
         <form action="{{route('orders.store')}}" method="post">
@@ -64,5 +63,4 @@
 
         </form>
 
-    </div>
 @endsection

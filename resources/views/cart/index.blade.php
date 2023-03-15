@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-   <div class="container">
        @if(session('message'))
            <div class="alert alert-success">
                {{session('message')}}
@@ -42,5 +41,5 @@
        </table>
        <h3> Total Price : ${{Cart::session(auth()->id())->getTotal()}}</h3>
         <a class="btn btn-primary" href="{{route('cart.checkout')}}" role="button">Proceed To checkout</a>
-   </div>
+
 @endsection
