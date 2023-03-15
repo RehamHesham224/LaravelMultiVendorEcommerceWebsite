@@ -17,6 +17,12 @@ class StoreOrderAction{
         $this->order['grand_total']=\Cart::session(auth()->id())->getTotal();
         $this->order['item_count']=\Cart::session(auth()->id())->getContent()->count();
 
+        if(request('payment_method') === 'paypal'){
+            //redirect to PayPal
+            $this->order['payment_method'] = 'paypal';
+        }
+        //
+
         $this->order =Order::create($this->order);
         //create order items
         $this->storeItemsData();
