@@ -6,7 +6,6 @@ use App\Actions\StoreOrderAction;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use http\Env\Request;
 
 class OrderController extends Controller
 {
@@ -42,13 +41,13 @@ class OrderController extends Controller
         //payment
         if(request('payment_method') === 'paypal'){
             //redirect to PayPal
-            return redirect()->route('paypal.checkout');
+            return redirect()->route('paypal.checkout',$order->id);
         }
         //empty cart
         \Cart::session(auth()->id())->clear();
         //send email to customer
         //take user to thank you page
-        return "Order completed, Thank you for order";
+        return redirect()->route('home')->with('message','order has been placed');
 
 //        dd($order);
     }

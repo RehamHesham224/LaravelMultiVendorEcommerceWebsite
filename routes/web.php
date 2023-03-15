@@ -2,6 +2,8 @@
 //declare(strict_types=1);
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ShopController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +30,10 @@ require_once base_path('/routes/cart.php');
 
 Route::resource('orders',OrderController::class)->middleware('auth');
 
+Route::resource('shops',ShopController::class)->middleware('auth');
 
-Route::get('paypal/checkout',[PayPalController::class,'getExpressCheckout'])->name('paypal.checkout');
-Route::get('paypal/checkout-success',[PayPalController::class,'getExpressCheckoutSuccess'])->name('paypal.success');
+Route::get('paypal/checkout/{order}',[PayPalController::class,'getExpressCheckout'])->name('paypal.checkout');
+Route::get('paypal/checkout-success/{order}',[PayPalController::class,'getExpressCheckoutSuccess'])->name('paypal.success');
 Route::get('paypal/checkout-cancel',[PayPalController::class,'cancel'])->name('paypal.cancel');
+
+
