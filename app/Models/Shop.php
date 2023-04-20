@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
-    protected $fillable=['name','description'];
+    protected $fillable=['name','description','rating','user_id','is_active',''];
+    protected $casts = [
+        'is_active' => 'boolean',
+        'rating'=>'float'
+    ];
     public function owner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class,'user_id');
