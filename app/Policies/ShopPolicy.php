@@ -10,82 +10,121 @@ use Illuminate\Auth\Access\Response;
 class ShopPolicy
 {
     use HandlesAuthorization;
-    public function before(User $user, Shop $shop)
+    public function viewAny(User $user)
     {
-        //TODO only role admin
-        if($user->id == $shop->user_id){
+        if( $user->hasPermissionTo('View Shop')){
             return true;
         }
+        return false;
     }
-    /**
-     * @param User $user
-     * @param Shop $shop
-     * @return bool
-     */
-    public function browse(User $user, Shop $shop): bool
+    public function view(User $user)
     {
-        //TODO only role seller
-        return $user->id == $shop->user_id;
+        if( $user->hasPermissionTo('View Shop')){
+            return true;
+        }
+        return false;
     }
-
-    /**
-     * @param User $user
-     * @param Shop $shop
-     * @return bool
-     */
-    public function read(User $user, Shop $shop): bool
+    public function create(User $user)
     {
-        return $user->id == $shop->user_id;
+        if( $user->hasPermissionTo('Create Shop')){
+            return true;
+        }
+        return false;
     }
-
-    /**
-     * Determine whether the user can edit the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function edit(User $user, Shop $shop)
-    {
-        return $user->id == $shop->user_id;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function update(User $user, Shop $shop)
     {
-        return $user->id == $shop->user_id;
+        if( $user->hasPermissionTo('Update Shop')){
+            return true;
+        }
+        return false;
     }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param User $user
-     * @param Shop $shop
-     * @return Response|bool
-     */
-
-    public function add(User $user, Shop $shop)
-    {
-        //
-    }
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-
     public function delete(User $user, Shop $shop)
     {
-        return $user->id == $shop->user_id;
+        if ($user->hasPermissionTo('Delete Shop')) {
+            return true;
+        }
+        return false;
     }
+//    {
+//        return $user->id == $shop->user_id;
+//    }
+
+//    public function before(User $user, Shop $shop)
+//    {
+//        //TODO only role admin
+//        if($user->id == $shop->user_id){
+//            return true;
+//        }
+//    }
+//    /**
+//     * @param User $user
+//     * @param Shop $shop
+//     * @return bool
+//     */
+//    public function browse(User $user, Shop $shop): bool
+//    {
+//        //TODO only role seller
+//        return $user->id == $shop->user_id;
+//    }
+//
+//    /**
+//     * @param User $user
+//     * @param Shop $shop
+//     * @return bool
+//     */
+//    public function read(User $user, Shop $shop): bool
+//    {
+//        return $user->id == $shop->user_id;
+//    }
+//
+//    /**
+//     * Determine whether the user can edit the model.
+//     *
+//     * @param  \App\Models\User  $user
+//     * @param  \App\Models\Shop  $shop
+//     * @return \Illuminate\Auth\Access\Response|bool
+//     */
+//    public function edit(User $user, Shop $shop)
+//    {
+//        return $user->id == $shop->user_id;
+//    }
+//
+//    /**
+//     * Determine whether the user can update the model.
+//     *
+//     * @param  \App\Models\User  $user
+//     * @param  \App\Models\Shop  $shop
+//     * @return \Illuminate\Auth\Access\Response|bool
+//     */
+//    public function update(User $user, Shop $shop)
+//    {
+//        return $user->id == $shop->user_id;
+//    }
+//
+//    /**
+//     * Determine whether the user can create models.
+//     *
+//     * @param User $user
+//     * @param Shop $shop
+//     * @return Response|bool
+//     */
+//
+//    public function add(User $user, Shop $shop)
+//    {
+//        //
+//    }
+//    /**
+//     * Determine whether the user can delete the model.
+//     *
+//     * @param  \App\Models\User  $user
+//     * @param  \App\Models\Shop  $shop
+//     * @return \Illuminate\Auth\Access\Response|bool
+//     */
+//
+//    public function delete(User $user, Shop $shop)
+//    {
+//        return $user->id == $shop->user_id;
+//    }
 
 
 }

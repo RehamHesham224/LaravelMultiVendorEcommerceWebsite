@@ -27,12 +27,12 @@ class ShopObserver
      */
     public function updated(Shop $shop)
     {
-        dd($shop);
+//        dd($shop);
         //check if column change from inactive to active
-            if($shop->getOriginal('is_active')== false && $shop->is_active == true){
-                Mail::to($shop->owner)->send(new ShopActivated());
-                //TODO change role from customer to seller
-            }
+//            if($shop->getOriginal('is_active')== false && $shop->is_active == true){
+//                Mail::to($shop->owner)->send(new ShopActivated());
+//                //TODO change role from customer to seller
+//            }
 
     }
 
