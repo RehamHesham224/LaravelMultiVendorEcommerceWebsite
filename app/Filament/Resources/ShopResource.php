@@ -6,9 +6,11 @@ use App\Filament\Resources\ShopResource\Pages;
 use App\Filament\Resources\ShopResource\RelationManagers;
 use App\Models\Shop;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
@@ -32,17 +34,20 @@ class ShopResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('description'),
-                Toggle::make('is_active')
-                    ->inline()
-                    ->onColor('success')
-                    ->offColor('danger'),
-                TextInput::make('rating')->numeric(),
-//                Hidden::make('user_id')
-//                ->default(Auth::id()),
-//                Select::make('user_id')
-//                    ->relationship('owner', 'id')
+                Card::make()->schema([
+                    TextInput::make('name')
+                        ->required(),
+                    Textarea::make('description')
+                        ->cols(20)
+                        ->rows(10)
+                        ->required(),
+                    Toggle::make('is_active')
+                        ->inline()
+                        ->onColor('success')
+                        ->offColor('danger'),
+                    TextInput::make('rating')
+                        ->numeric(),
+                ])
 
             ]);
 
@@ -52,8 +57,9 @@ class ShopResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('description'),
+                TextColumn::make('id')->sortable(),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('description')->searchable(),
                 ToggleColumn::make('is_active'),
                 TextColumn::make('owner.name')
 
@@ -65,6 +71,7 @@ class ShopResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
