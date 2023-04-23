@@ -17,18 +17,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->call(ProductSeeder::class);
-//        \App\Models\User::factory(10)->create();
-         $user=User::factory()->create([
-             'name'=>'Admin',
-             'email'=>'admin@example.com',
-         ]);
-        $user2=User::factory()->create([
-            'name'=>'Test',
-            'email'=>'admin@example.com',
-        ]);
-        $role = Role::create(['name' => 'writer']);
-        $user->assignRole($role);
-        $permission = Permission::create(['name' => 'edit articles']);
+
+//         $user=User::factory()->create([
+//             'name'=>'Admin',
+//             'email'=>'admin@example.com',
+//         ]);
+//        $user2=User::factory()->create([
+//            'name'=>'Test',
+//            'email'=>'admin@example.com',
+//        ]);
+//        User::factory(10)->create();
+//        $role = Role::create(['name' => 'Seller']);
+//        $user->assignRole($role);
+//        $permission = Permission::create(['name' => 'edit Product']);
+         $this->call(ProductSeeder::class);
+
     }
 }

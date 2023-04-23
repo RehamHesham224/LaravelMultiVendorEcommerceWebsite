@@ -9,86 +9,49 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class ProductPolicy
 {
     use HandlesAuthorization;
-//
-//    /**
-//     * Determine whether the user can view any models.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function viewAny(User $user)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Determine whether the user can view the model.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @param  \App\Models\Product  $product
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function view(User $user, Product $product)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Determine whether the user can create models.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function create(User $user)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Determine whether the user can update the model.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @param  \App\Models\Product  $product
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function update(User $user, Product $product)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Determine whether the user can delete the model.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @param  \App\Models\Product  $product
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function delete(User $user, Product $product)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Determine whether the user can restore the model.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @param  \App\Models\Product  $product
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function restore(User $user, Product $product)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Determine whether the user can permanently delete the model.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @param  \App\Models\Product  $product
-//     * @return \Illuminate\Auth\Access\Response|bool
-//     */
-//    public function forceDelete(User $user, Product $product)
-//    {
-//        //
-//    }
+    public function before(User $user)
+    {
+        if( $user->hasRole('Admin')){
+            return true;
+        }
+    }
+    public function viewAny(User $user)
+    {
+        if( $user->hasRole('Seller')|| $user->hasPermissionTo('View Any Shop')){
+            return true;
+        }
+    }
+    public function view(User $user, Product $product)
+    {
+        if(empty($product->shop)){
+            return false;
+        }
+        else if( $user->id == $product->shop->user_id|| $user->hasPermissionTo('View Products')){
+            return true;
+        }
+    }
+    public function create(User $user)
+    {
+        if( $user->hasRole('Seller')||$user->hasPermissionTo('Create Products')){
+            return true;
+        }
+    }
+    public function update(User $user, Product $product)
+    {
+        if(empty($product->shop)){
+            return false;
+        }
+        else if($user->id == $product->shop->user_id || $user->hasPermissionTo('Update Products')){
+            return true;
+        }
+    }
+    public function delete(User $user,  Product $product)
+    {
+        if(empty($product->shop)){
+            return false;
+        }
+        else if ($user->id == $product->shop->user_id || $user->hasPermissionTo('Delete Products')) {
+            return true;
+        }
+    }
 }

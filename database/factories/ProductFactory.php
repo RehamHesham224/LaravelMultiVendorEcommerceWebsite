@@ -20,6 +20,7 @@ class ProductFactory extends Factory
             'name'=>fake()->sentence(2),
             'description'=>fake()->sentence(20),
             'price'=>fake()->numberBetween(100,5000),
+            'shop_id'=>1
         ];
     }
 }
