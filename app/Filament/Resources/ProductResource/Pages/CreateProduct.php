@@ -17,4 +17,11 @@ class CreateProduct extends CreateRecord
     {
         return 'Product Created';
     }
+//    protected function mutateFormDataBeforeCreate(array $data): array
+//    {
+//        if(auth()->user()->hasRole('Seller')) {
+//            $data['shop_id']= auth()->user()->shop->id;
+//        }
+//        return $data;
+//    }
 }

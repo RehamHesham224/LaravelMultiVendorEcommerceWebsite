@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->float('price');
             $table->string('cover_img')->nullable();
+            $table->foreignId('shop_id')->constrained();
             $table->timestamps();
         });
     }
