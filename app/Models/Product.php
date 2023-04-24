@@ -15,4 +15,8 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(Shop::class,'shop_id');
     }
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Category::class,'product_categories','product_id','category_id');
+    }
 }

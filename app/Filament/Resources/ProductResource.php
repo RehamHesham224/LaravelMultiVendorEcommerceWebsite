@@ -29,7 +29,7 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                   TextInput::make('name')
+                    TextInput::make('name')
                         ->required()
                         ->maxLength(255),
                     TextInput::make('description')
@@ -37,7 +37,11 @@ class ProductResource extends Resource
                         ->maxLength(255),
                     TextInput::make('price')
                         ->required(),
-                SpatieMediaLibraryFileUpload::make('cover_img')->collection('cover'),
+                    SpatieMediaLibraryFileUpload::make('cover_img')->collection('cover'),
+                    Forms\Components\Select::make('categories')
+                        ->multiple()
+                        ->relationship('categories','name')
+                        ->preload(),
             ])
             ]);
     }
@@ -46,14 +50,17 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->sortable(),
                 TextColumn::make('name'),
-                TextColumn::make('description'),
+                TextColumn::make('description')
+                    ->limit(30),
                 TextColumn::make('price'),
                 SpatieMediaLibraryImageColumn::make('cover_img')->collection('cover'),
                 TextColumn::make('created_at')
                     ->dateTime(),
                 TextColumn::make('updated_at')
                     ->dateTime(),
+                TextColumn::make('categories.name')
             ])
             ->filters([
                 //

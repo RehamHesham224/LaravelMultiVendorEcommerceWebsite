@@ -40,7 +40,8 @@ class ShopResource extends Resource
                     Textarea::make('description')
                         ->cols(20)
                         ->rows(10)
-                        ->required(),
+                        ->required()
+                        ->limit(30),
                     Toggle::make('is_active')
                         ->inline()
                         ->onColor('success')
