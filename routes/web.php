@@ -2,6 +2,7 @@
 //declare(strict_types=1);
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 require_once base_path('/routes/cart.php');
+
+Route::get('/products/search',[ProductController::class,'search'])->name('products.search');
+Route::resource('products',ProductController::class);
+
 
 Route::resource('orders',OrderController::class)->middleware('auth');
 

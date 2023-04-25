@@ -36,6 +36,13 @@ class CategoryResource extends Resource
                     ->multiple()
                     ->relationship('products','name')
                     ->preload(),
+                Forms\Components\Select::make('parent_id')
+                    ->relationship('parent','name')
+                    ->preload(),
+//                Forms\Components\Select::make('parent_id')
+//                    ->multiple()
+//                    ->relationship('children','name')
+//                    ->preload(),
             ]);
     }
 
@@ -51,7 +58,9 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
                 TextColumn::make('products.name')
-                ->limit(30)
+                ->limit(30),
+                TextColumn::make('parent.name')
+                    ->limit(30)
 
             ])
             ->filters([
