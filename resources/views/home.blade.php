@@ -41,20 +41,17 @@
                     <h3> All Departments <i class="pe-7s-angle-down"></i></h3>
                 </div>
 
-{{--                @include('_category-list')--}}
-{{--                <x-category_list/>--}}
+                <x-category_list :categories="$categories"/>
 
             </div>
 
             <div class="menu-slider-wrapper">
 
                 <div class="menu-style-3 menu-hover text-center">
-{{--                    @include('_navbar')--}}
                     <x-navbar/>
                 </div>
 
                 <div class="slider-area">
-{{--                    @include('_slider')--}}
                     <x-slider/>
                 </div>
 
@@ -66,9 +63,6 @@
 
     <div class="electronic-banner-area">
         <div class="custom-row-2">
-{{--            @include('_dummy-product')--}}
-{{--            @include('_dummy-product')--}}
-{{--            @include('_dummy-product')--}}
             <x-dummy_product/>
             <x-dummy_product/>
             <x-dummy_product/>
@@ -92,7 +86,6 @@
                         <div class="custom-row-2">
 
                             @foreach($products as $product)
-{{--                                @include('product._single_product')--}}
                                 <x-product.single_product :product="$product" />
                             @endforeach
 

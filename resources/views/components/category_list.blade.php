@@ -21,12 +21,12 @@
 
                                 </h4>
                                 @php
-                                    $grandChild = $child->children;
+                                    $grandChildren = $child->children;
                                 @endphp
-                                @if($grandChild && $grandChild->isNotEmpty())
+                                @if($grandChildren && $grandChildren->isNotEmpty())
                                     <ul>
-                                        @foreach ($grandChild as $c)
-                                            <li><a href="{{route('products.index', ['category_id' => $c->id])}}">{{$c->name}}</a></li>
+                                        @foreach ($grandChildren as $grandChild)
+                                            <li><a href="{{route('products.index', ['category_id' => $grandChild->id])}}">{{$grandChild->name}}</a></li>
                                         @endforeach
                                     </ul>
                                 @endif

@@ -76,15 +76,15 @@
                     <img src="/assets/img/logo/logo-3.png" alt="">
                 </a>
             </div>
-{{--            <div class="categories-search-wrapper">--}}
+            <div class="categories-search-wrapper">
 
-{{--                <div class="categories-wrapper">--}}
-{{--                    <form action="{{route('products.search')}}" method="GET">--}}
-{{--                        <input name="query" placeholder="Enter Your key word" type="text">--}}
-{{--                        <button type="submit"> Search </button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+                <div class="categories-wrapper">
+                    <form action="{{route('products.search')}}" method="GET">
+                        <input name="query" placeholder="Enter Your key word" type="text">
+                        <button type="submit"> Search </button>
+                    </form>
+                </div>
+            </div>
             <div class="trace-cart-wrapper">
                 <div class="trace same-style">
                     <div class="same-style-icon">
