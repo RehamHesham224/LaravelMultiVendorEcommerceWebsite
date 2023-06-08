@@ -17,6 +17,7 @@ class PayPalController extends Controller
             $approvalUrl = $provider->approveUrl($response);
             return redirect($approvalUrl);
         } catch (\GuzzleHttp\Exception\InvalidArgumentException $e) {
+            //error page
         dd('Error capturing payment: ' . $e->getMessage());
         }
     }
@@ -69,7 +70,7 @@ class PayPalController extends Controller
         }
 
 //            dd('Payment not captured!');
-        return redirect()->route('home')->with('message','Payment unSuccessful , something went wrong');
+        return redirect()->route('home')->with('message',' something went wrong');
     }
 
     public function cancel(){
