@@ -42,3 +42,11 @@ Route::get('paypal/checkout-success/{order}',[PayPalController::class,'getExpres
 Route::get('paypal/checkout-cancel',[PayPalController::class,'cancel'])->name('paypal.cancel');
 
 
+Route::group(['prefix' => 'seller', 'middleware' => 'auth', 'as' => 'seller.'], function () {
+
+    Route::redirect('/','seller/orders');
+
+    Route::resource('/orders',  \App\Http\Controllers\Seller\OrderController::class);
+
+    Route::get('/orders/delivered/{suborder}',  [\App\Http\Controllers\Seller\OrderController::class, 'markAsDelivered'])->name('order.delivered');
+});
