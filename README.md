@@ -2,13 +2,13 @@
 ## Multi Vendor Ecommerce
 
 ### libraries
-- "filament/filament" Admin Panel used to manage Project
-- "filament/spatie-laravel-media-library-plugin" used to handle media to upload and view media
-- "althinect/filament-spatie-roles-permissions" used to manage permessions and rules
-- "srmklive/paypal" used to deal with paypal
-- "darryldecode/cart" used to handle cart operations
-- "laravel/ui" used for authentication
-- "livewire" used to edit quality , edit and delete product without refresh page
+- **"filament/filament"** Admin Panel used to manage Project
+- **"filament/spatie-laravel-media-library-plugin"** used to handle media to upload and view media
+- **"althinect/filament-spatie-roles-permissions"** used to manage permessions and rules
+- **"srmklive/paypal"** used to deal with paypal
+- **"darryldecode/cart"** used to handle cart operations
+- **"laravel/ui"** used for authentication
+- **"livewire"** used to edit quality , edit and delete product without refresh page
 
 ### Functionalities
 
