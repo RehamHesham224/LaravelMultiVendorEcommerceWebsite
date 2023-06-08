@@ -12,32 +12,32 @@
 
 ### Functionalities
 
-- Category
-  - make category have subcategory
-  - show main categories in home page
-- Products
+- **Category**
+  - Category can have subcategory
+  - Show main categories in home page
+- **Products**
   - View all Products related to some category
   - Show single category products
   - Search For Product
   - View Some Products from different shops in home page
-- Place Order
-- Manage Order for seller
-- Cart
-  - add products to cart
-  - show cart content
-  - delete item from cart
-  - edit quantity of item in cart
+- **Order**
+  - Place Order
+  - Manage Order by Seller
+- **Cart**
+  - Add products to cart
+  - Show cart content
+  - Delete item from cart
+  - Edit quantity of item in cart " using Livewire"
   - Apply coupon
-- Checkout
+- **Checkout**
   - using Paypal
-- Shop
+- **Shop**
   - Auth can add shop
   - if shop activated" check with observer", it will send mail to him and change role from customer to seller
-- Roles and Permissions
+- **Roles and Permissions**
   - Admin can edit , view , delete role
   - Seller role "or by permissions" how can manage his shop
   - Manage products by permissions, seller who only can delete and edit product of his shop.
-
 
 
 
